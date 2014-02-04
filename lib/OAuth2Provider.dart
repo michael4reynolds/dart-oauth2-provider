@@ -1,3 +1,5 @@
+library dartoauth2.provider;
+
 import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
