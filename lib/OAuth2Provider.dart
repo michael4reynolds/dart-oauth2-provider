@@ -8,15 +8,13 @@ import 'TokenEndpoint.dart';
 
 class OAuth2Provider {
 
-  GrantHandlerResult _r;
+  GrantHandlerResult r;
 
-  OAuth2Provider([this._r]);
-
-  void issueAccessToken(DataHandler dataHandler, [HttpRequest request]) {
+  void issueAccessToken(DataHandler dataHandler, HttpRequest request) {
     try {
       var endpoint = new TokenEndpoint();
       endpoint.handleRequest(request, dataHandler);
-      request.response.write(responseAccessToken(_r));
+      request.response.write(responseAccessToken);
       request.response.close();
     } catch (e) {
       if(e.statusCode == HttpStatus.BAD_REQUEST ) responseOAuthError(request..response.statusCode = 400, e);
@@ -24,9 +22,8 @@ class OAuth2Provider {
     }
   }
 
-  String responseAccessToken(GrantHandlerResult r) {
-    return r.toJSon;
-  }
+  String get responseAccessToken => r.toJSon;
+
 
   responseOAuthError(HttpRequest result, OAuthError e) {
     result.response.headers.set('www-authenticate', "Bearer " + toOAuthErrorString(e));
