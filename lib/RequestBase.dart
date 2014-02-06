@@ -3,20 +3,20 @@ library dartoauth2.provider;
 import 'OAuthException.dart';
 
 class RequestBase {
-  final Map<String, String> _headers;
-  final Map<String, List<String>>_params;
+  final Map<String, String> headers;
+  final Map<String, List<String>> params;
 
-  RequestBase(this._headers, this._params);
+  RequestBase(this.headers, this.params);
 
-  String header(String name) => _headers[name];
+  String header(String name) => headers[name];
 
   String requireHeader(String name) {
-    if (_headers[name] != null)
-      return _headers[name];
+    if (headers[name] != null)
+      return headers[name];
     throw new InvalidRequest("required header: $name");
   }
 
-  String param(String name) => _params[name] != null ? _params[name].first : null;
+  String param(String name) => params[name] != null ? params[name].first : null;
 
   String requireParam(String name) {
     if (param(name) != null)

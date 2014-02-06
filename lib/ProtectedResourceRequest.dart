@@ -1,4 +1,4 @@
-library dartoauth2.provider;
+library dartoauth2.provider.protectedresourcerequest;
 
 import 'RequestBase.dart';
 
