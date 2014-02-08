@@ -42,6 +42,7 @@ class AuthHeader extends AccessTokenFetcher {
     if (header != null) {
       return REGEXP_AUTHORIZATION.firstMatch(header) != null;
     }
+    return false;
   }
 
   FetchResult fetch(ProtectedResourceRequest request) {
@@ -56,13 +57,13 @@ class AuthHeader extends AccessTokenFetcher {
     var params = new Map<String, String>();
     if (header.length != end) {
       var trimmedHeader = header.substring(end).replaceFirst(REGEXP_TRIM, '');
-      var pairs = trimmedHeader.split(REGEXP_DIV_COMMA).map((exp) {
+      trimmedHeader.split(REGEXP_DIV_COMMA).forEach((exp) {
         var list = exp.split("=");
-        var key   = list[0];
-        var value = list[1];
-        key.replaceFirst('^\"', '');
-
-        params = {key: Uri.decodeComponent(value.replaceFirst(r'"$', ''))};
+        String key = list[0];
+        String value = list[1]
+          .replaceFirst(new RegExp('^\"'), '')
+          .replaceFirst(new RegExp(r'"$'), '');
+        params.addAll({key: Uri.decodeComponent(value)});
       });
     }
 
