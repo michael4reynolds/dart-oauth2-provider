@@ -25,10 +25,11 @@ class  RequestParameter extends AccessTokenFetcher {
     if (t == null) {
       t = request.requireAccessToken;
     }
-    Map<String, String> param = request.params.values.isNotEmpty
-                               ? request.params.values.first : null;
-    ["oauth_token", "access_token"].forEach((k) => param.remove(k));
-    return new FetchResult(t, param);
+    var params = new Map.fromIterables(
+        request.params.keys, request.params.values
+          .map((v) => v != null ? v.first : null));
+    ["oauth_token", "access_token"].forEach((k) => params.remove(k));
+    return new FetchResult(t, params);
   }
 }
 

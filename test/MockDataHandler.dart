@@ -36,18 +36,3 @@ class DemoClientCredentialFetcher extends ClientCredentialFetcher {
   @override
   fetch([AuthorizationRequest request]) => new ClientCredential("clientId1", "clientSecret1");
 }
-
-//class _MockDataHandler extends Mock implements DataHandler {
-//  MockDataHandler() {
-//    this.when(callsTo('validateClient')).alwaysReturn(false);
-//    this.when(callsTo('findUser')).alwaysReturn(null);
-//    this.when(callsTo('createAccessToken')).alwaysReturn(new AccessToken('', '', '', 0, new DateTime.now()));
-//    this.when(callsTo('findAuthInfoByCode')).alwaysReturn(null);
-//    this.when(callsTo('findAuthInfoByRefreshToken')).alwaysReturn(null);
-//    this.when(callsTo('findClientUser')).alwaysReturn(null);
-//    this.when(callsTo('findAccessToken')).alwaysReturn(null);
-//    this.when(callsTo('findAuthInfoByAccessToken')).alwaysReturn(null);
-//    this.when(callsTo('getStoredAccessToken')).alwaysReturn(null);
-//    this.when(callsTo('refreshAccessToken')).alwaysReturn(new AccessToken('', '', '', 0, new DateTime.now()));
-//  }
-//}

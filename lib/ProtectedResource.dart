@@ -7,15 +7,18 @@ import 'OAuthException.dart';
 
 class ProtectedResource {
 
-  AccessTokenFetcher fetcher;
+  var fetchers = [new AuthHeader(), new RequestParameter()];
 
-  ProtectedResource(this.fetcher);
+  ProtectedResource();
 
   handleRequest(ProtectedResourceRequest request, DataHandler dataHandler) {
+    var fetcher = fetchers.firstWhere((_fetcher) => _fetcher.matches(request),
+      orElse: () => throw new InvalidRequest("Access token was not specified"));
+
     var result = fetcher.fetch(request);
     var accessToken = dataHandler.findAccessToken(result.token);
 
-    if(accessToken == null) {
+    if (accessToken == null) {
       throw new InvalidToken("Invalid access token");
     }
 
@@ -23,9 +26,10 @@ class ProtectedResource {
       throw new ExpiredToken();
     }
 
-    if(dataHandler.findAuthInfoByAccessToken(accessToken) == null){
+    if (dataHandler.findAuthInfoByAccessToken(accessToken) == null) {
       throw new InvalidToken("invalid access token");
     }
-  }
 
+    return true;
+  }
 }
