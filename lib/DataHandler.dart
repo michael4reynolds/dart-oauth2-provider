@@ -1,11 +1,11 @@
 library dartoauth2.provider.datahandler;
 
-class AccessTokenRequest {
+class AccessTokenRequest<U> {
   String clientId;
   String clientSecret;
-  String userId;
+  U user;
 
-  AccessTokenRequest(this.clientId, this.clientSecret, this.userId);
+  AccessTokenRequest(this.clientId, this.clientSecret, this.user);
 }
 
 class AccessToken {
@@ -18,13 +18,13 @@ class AccessToken {
   AccessToken(this.token, this.refreshToken, this.scope, this.expiresIn, this.createdAt);
 }
 
-class AuthInfo {
-  String userId;
+class AuthInfo<U> {
+  U user;
   String clientId;
   String scope;
   Uri redirectUri;
 
-  AuthInfo(this.userId, this.clientId, this.scope, this.redirectUri);
+  AuthInfo(this.user, this.clientId, this.scope, this.redirectUri);
 }
 
 abstract class DataHandler<U> {
@@ -50,7 +50,7 @@ abstract class DataHandler<U> {
   AuthInfo findAuthInfoByAccessToken(AccessToken accessToken);
 
   bool isAccessTokenExpired(AccessToken accessToken) {
-    if(accessToken.expiresIn == null) return false;
+    if(accessToken == null || accessToken.expiresIn == null) return false;
 
     var expiration =
     accessToken.createdAt.add(new Duration(seconds: accessToken.expiresIn));

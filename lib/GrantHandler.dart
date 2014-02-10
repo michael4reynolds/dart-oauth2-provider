@@ -30,9 +30,11 @@ abstract class GrantHandler {
   GrantHandlerResult handleRequest(AuthorizationRequest request, DataHandler dataHandler);
 
   GrantHandlerResult issueAccessToken(DataHandler dataHandler, AuthInfo authInfo) {
-    var token = dataHandler.getStoredAccessToken(authInfo);
-    if(dataHandler.isAccessTokenExpired(token)) {
-      token.refreshToken = dataHandler.refreshAccessToken(authInfo) != null
+    accessToken = dataHandler.getStoredAccessToken(authInfo);
+    if (accessToken == null) {
+      accessToken = dataHandler.createAccessToken(authInfo);
+    } else if (dataHandler.isAccessTokenExpired(accessToken)) {
+      accessToken = dataHandler.refreshAccessToken(authInfo) != null
                            ? dataHandler.refreshAccessToken(authInfo)
                            : dataHandler.createAccessToken(authInfo);
     }
@@ -95,7 +97,7 @@ class Password extends GrantHandler {
     var clientId = clientCredential.clientId;
     var authInfo = new AuthInfo(user, clientId, scope, null);
 
-    issueAccessToken(dataHandler, authInfo);
+    return issueAccessToken(dataHandler, authInfo);
   }
 }
 
@@ -118,7 +120,7 @@ class ClientCredentials extends GrantHandler {
     }
     var authInfo = new AuthInfo(user, clientId, scope, null);
 
-    issueAccessToken(dataHandler, authInfo);
+    return issueAccessToken(dataHandler, authInfo);
   }
 }
 
@@ -140,11 +142,11 @@ class AuthorizationCode extends GrantHandler {
       throw new InvalidClient();
     }
 
-    if (authInfo.redirectUri != null && authInfo.redirectUri != redirectUri) {
+    if (authInfo.redirectUri != null && authInfo.redirectUri.toString() != redirectUri) {
       throw new RedirectUriMismatch();
     }
 
-    issueAccessToken(dataHandler, authInfo);
+    return issueAccessToken(dataHandler, authInfo);
   }
 }
 
