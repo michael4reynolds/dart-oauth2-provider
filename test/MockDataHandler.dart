@@ -1,11 +1,7 @@
 library data_handler_test;
 
 import 'package:dartOauth2Provider/DataHandler.dart';
-import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/GrantHandler.dart';
-import 'package:dartOauth2Provider/DataHandler.dart';
 import 'package:dartOauth2Provider/AuthorizationRequest.dart';
-import 'package:dartOauth2Provider/ProtectedResourceRequest.dart';
 import 'package:dartOauth2Provider/ClientCredentialFetcher.dart';
 
 class DemoUser {

@@ -8,7 +8,7 @@ import 'OAuthException.dart';
 
 class TokenEndpoint {
 
-  ClientCredentialFetcher fetcher;
+  ClientCredentialFetcher fetcher = new ClientCredentialFetcher();
 
   Map get handlers => {
       "authorization_code" : new AuthorizationCode(fetcher),
@@ -36,6 +36,8 @@ class TokenEndpoint {
     if (!dataHandler.validateClient(clientCredential.clientId, clientCredential.clientSecret, grantType)) {
       throw new InvalidClient();
     }
+
+    return true;
   }
 
 }

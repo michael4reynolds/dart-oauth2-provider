@@ -1,12 +1,9 @@
 library auth_header_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/GrantHandler.dart';
 import 'package:dartOauth2Provider/DataHandler.dart';
-import 'package:dartOauth2Provider/AuthorizationRequest.dart';
 import 'package:dartOauth2Provider/ProtectedResource.dart';
 import 'package:dartOauth2Provider/ProtectedResourceRequest.dart';
-import 'package:dartOauth2Provider/ClientCredentialFetcher.dart';
 import 'package:dartOauth2Provider/OAuthException.dart';
 import 'MockDataHandler.dart';
 
@@ -44,7 +41,7 @@ void main() {
       expect(() => new ProtectedResource().handleRequest(request, dataHandler), throwsA(new isInstanceOf<ExpiredToken>()));
     });
 
-    solo_test('be invalid request without token', () {
+    test('be invalid request without token', () {
       var request = new ProtectedResourceRequest(
           {},
           {"username": ["user"], 'password': ['pass'], 'scope': ['all']});
