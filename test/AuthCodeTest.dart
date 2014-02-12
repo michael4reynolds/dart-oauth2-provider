@@ -1,10 +1,7 @@
-library auth_header_test;
+library auth_code_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/GrantHandler.dart';
-import 'package:dartOauth2Provider/DataHandler.dart';
-import 'package:dartOauth2Provider/AuthorizationRequest.dart';
-import 'package:dartOauth2Provider/ProtectedResourceRequest.dart';
+import 'package:dartOauth2Provider/oauth2Provider.dart';
 import 'MockDataHandler.dart';
 
 DemoDataHandler dataHandler1;
@@ -18,7 +15,7 @@ void createDataHandler() {
 ProtectedResourceRequest createRequest(String authorization) =>
   new ProtectedResourceRequest({ 'Authorization': authorization }, new Map());
 
-void main() {
+AuthorizationCodeSpec() {
 
   group('AuthorizationCodeSpec', () {
     setUp(createDataHandler);

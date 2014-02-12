@@ -1,10 +1,7 @@
 library request_parameter_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/DataHandler.dart';
-import 'package:dartOauth2Provider/AccessTokenFetcher.dart';
-import 'package:dartOauth2Provider/ProtectedResourceRequest.dart';
-import 'package:dartOauth2Provider/OAuthException.dart';
+import 'package:dartOauth2Provider/oauth2Provider.dart';
 import 'MockDataHandler.dart';
 
 RequestParameter requestParameter;
@@ -28,9 +25,9 @@ ProtectedResourceRequest createRequest(String oauthToken, String accessToken, [M
   return new ProtectedResourceRequest({}, params);
 }
 
-void main() {
+RequestParameterSpec() {
 
-  group('AuthorizationCodeSpec', () {
+  group('RequestParameterSpec', () {
     setUp(createDataHandler);
     
     test('match RequestParameter', () {

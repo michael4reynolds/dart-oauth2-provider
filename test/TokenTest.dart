@@ -1,10 +1,7 @@
 library token_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/DataHandler.dart';
-import 'package:dartOauth2Provider/AuthorizationRequest.dart';
-import 'package:dartOauth2Provider/OAuthException.dart';
-import 'package:dartOauth2Provider/TokenEndpoint.dart';
+import 'package:dartOauth2Provider/oauth2Provider.dart';
 import 'MockDataHandler.dart';
 
 DemoDataHandler1 successfulDataHandler;
@@ -15,7 +12,7 @@ void createDataHandler() {
   tokenEndpoint = new TokenEndpoint();
 }
 
-void main() {
+TokenSpec() {
 
   group('TokenSpec', () {
     setUp(createDataHandler);

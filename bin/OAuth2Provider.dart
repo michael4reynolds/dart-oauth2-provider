@@ -1,10 +1,7 @@
 library dartoauth2.provider;
 
 import 'dart:io';
-import 'GrantHandler.dart';
-import 'DataHandler.dart';
-import 'OAuthException.dart';
-import 'TokenEndpoint.dart';
+import 'package:dartOauth2Provider/oauth2Provider.dart';
 
 class OAuth2Provider {
 

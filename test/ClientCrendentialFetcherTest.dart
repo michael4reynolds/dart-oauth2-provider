@@ -1,12 +1,11 @@
 library client_credential_fetcher_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/AuthorizationRequest.dart';
-import 'package:dartOauth2Provider/ClientCredentialFetcher.dart';
+import 'package:dartOauth2Provider/oauth2Provider.dart';
 
 ClientCredentialFetcher clientCredentialFetcher;
 
-void main() {
+ClientCredentialFetcherSpec() {
   group('ClientCredentialFetcherSpec', () {
     setUp(() => clientCredentialFetcher = new ClientCredentialFetcher());
     

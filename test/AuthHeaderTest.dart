@@ -1,9 +1,7 @@
 library auth_header_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/AccessTokenFetcher.dart';
-import 'package:dartOauth2Provider/ProtectedResourceRequest.dart';
-import 'package:dartOauth2Provider/OAuthException.dart';
+import 'package:dartOauth2Provider/oauth2Provider.dart';
 
 AuthHeader authHeader;
 
@@ -14,7 +12,7 @@ void createAuthHeader() {
 ProtectedResourceRequest createRequest(String authorization) =>
   new ProtectedResourceRequest({ 'Authorization': authorization }, new Map());
 
-void main() {
+AuthHeaderSpecs() {
 
   group('AuthHeaderSpecs', () {
     setUp(createAuthHeader);

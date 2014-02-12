@@ -1,10 +1,7 @@
-library auth_header_test;
+library protected_resource_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/DataHandler.dart';
-import 'package:dartOauth2Provider/ProtectedResource.dart';
-import 'package:dartOauth2Provider/ProtectedResourceRequest.dart';
-import 'package:dartOauth2Provider/OAuthException.dart';
+import 'package:dartOauth2Provider/oauth2Provider.dart';
 import 'MockDataHandler.dart';
 
 DemoDataHandler1 successfulDataHandler;
@@ -15,7 +12,7 @@ void createDataHandler() {
   dataHandler = new DemoDataHandler2();
 }
 
-void main() {
+ProtectedResourceSpec() {
 
   group('ProtectedResourceSpec', () {
     setUp(createDataHandler);

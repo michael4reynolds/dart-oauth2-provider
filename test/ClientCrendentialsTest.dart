@@ -1,12 +1,10 @@
 library client_credentials_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartOauth2Provider/AuthorizationRequest.dart';
-import 'package:dartOauth2Provider/DataHandler.dart';
-import 'package:dartOauth2Provider/GrantHandler.dart';
+import 'package:dartOauth2Provider/oauth2Provider.dart';
 import 'MockDataHandler.dart';
 
-void main() {
+ClientCredentialsSpec() {
   group('ClientCredentialsSpec', () {
 
     test('handle request', () {
